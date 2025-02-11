@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>La vida en lienzo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Playwrite+DE+VA+Guides&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Pinyon+Script&family=Playwrite+DE+VA+Guides&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!--Cabecera iconos-->
+    <header>
+        <div class="contenido-header">
+            <div class="titulo">
+                <img class="logo" src="CSS\Imágenes\Iconos\Logo SF.png" alt="Logotipo">
+                <h1>La vida en lienzo</h1>
+            </div>
+            <div class="iconos-superiores">
+                <a href="#" title="Buscar">
+                    <img src="CSS\Imágenes\Iconos\Lupa.png" alt="Icono de búsqueda" width="50" height="50">
+                </a>
+                <a href="#" title="Usuario">
+                    <img src="CSS\Imágenes\Iconos\Usuario.png" alt="Icono de usuario" width="50" height="50">
+                </a>
+                <a href="#" title="Carrito">
+                    <img src="CSS\Imágenes\Iconos\Cesta compra.png" alt="Icono de carrito" width="50" height="50">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <header>
+        <!--Cabecera carrusel-->
+        <div class="carrusel">
+            <input type="radio" id="radio1" name="radio" checked>
+            <input type="radio" id="radio2" name="radio">
+            <input type="radio" id="radio3" name="radio">
+            <input type="radio" id="radio4" name="radio">
+            <!--Contenedor de imágenes-->
+            <div class="slides">
+                <div class="slide"><img src="CSS\Imágenes\Imagenes cabecera\Busto.webp"
+                        alt="Busto de mujer realizado en cerámica"> </div>
+                <div class="slide"><img src="CSS\Imágenes\Imagenes cabecera\Lienzo.jpg"
+                        alt="Conjunto de lienzos en tonalidades pastel"></div>
+                <div class="slide"><img src="CSS\Imágenes\Imagenes cabecera\Vajilla.jpg"
+                        alt="Vajilla cerámica con diseño geométrico"></div>
+                <div class="slide"><img src="CSS\Imágenes\Imagenes cabecera\Taller.webp"
+                        alt="Imagen del taller de creación">
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!--Contenido principal-->
+    <main class="contenedor-principal">
+        <!--Columna izquierda-->
+        <section class="columna-izquierda">
+            <!--Disciplinas-->
+            <nav class="disciplinas">
+                <h2>Disciplinas</h2>
+                <ul>
+                    <li><b>Lienzos</b></li>
+                    <ul class="submenu-acrilico">
+                        <li>Acrílico</li>
+                        <img src="CSS\Imágenes\Disciplinas\Lienzos\Acrílico\Acrílico.webp" alt="Pintura en acrílico"
+                            width="200" height="200" />
+                        <img src="CSS\Imágenes\Disciplinas\Lienzos\Acrílico\Acrilico 3.webp" alt="Pintura en acrílico"
+                            width="200" height="200" />
+                        <img src="CSS\Imágenes\Disciplinas\Lienzos\Acrílico\Acrilico 2.webp" alt="Pintura en acrílico"
+                            width="200" height="200" />
+                    </ul>
+
+                    <ul class="submenu-oleo">
+                        <li>Oleos</li>
+                        <img src="CSS\Imágenes\Disciplinas\Lienzos\Oleo\Oleo1.webp" alt="Pintura en oleo" width="200"
+                            height="200" />
+                        <img src="CSS\Imágenes\Disciplinas\Lienzos\Oleo\Oleo3.webp" alt="Pintura en oleo" width="200"
+                            height="200" />
+                        <img src="CSS/Imágenes/Disciplinas/Lienzos/Oleo/Oleo2.webp" alt="Pintura en oleo" width="200"
+                            height="200" />
+                    </ul>
+
+                    <ul class="submenu-acuarela">
+                        <li>Acuarelas</li>
+                        <img src="CSS\Imágenes\Disciplinas\Lienzos\Acuarela\Acuarela 2.webp" alt="Pintura en acuarela"
+                            width="200" height="200" />
+                        <img src="CSS\Imágenes\Disciplinas\Lienzos\Acuarela\Acuarela3.webp" alt="Pintura en acuarela"
+                            width="200" height="200" />
+                        <img src="CSS\Imágenes\Disciplinas\Lienzos\Acuarela\Acuarela.webp" alt="Pintura en acurela"
+                            width="200" height="200" />
+                    </ul>
+                    <br>
+                    <br>
+                    <li><b>Esculturas</b></li>
+                    <ul class="submenu-arcilla">
+                        <li>Arcilla</li>
+                        <img src="CSS\Imágenes\Disciplinas\Escultura\Arcilla\Arcilla1.webp" alt="Escultura en arcilla"
+                            width="200" height="200" />
+                        <img src="CSS\Imágenes\Disciplinas\Escultura\Arcilla\Arcilla2.webp" alt="Escultura en arcilla"
+                            width="200" height="200" />
+                        <img src="CSS\Imágenes\Disciplinas\Escultura\Arcilla\Arcilla3.webp" alt="Escultura en arcilla"
+                            width="200" height="200" />
+                    </ul>
+
+                    <ul class="submenu-hormigón">
+                        <li>Hormigón</li>
+                        <img src="CSS\Imágenes\Disciplinas\Escultura\Hormigón\Hormigón2.webp"
+                            alt="Escultura en hormigón" width="200" height="200" />
+                        <img src="CSS\Imágenes\Disciplinas\Escultura\Hormigón\Hormigón3.webp"
+                            alt="Escultura en hormigón" width="200" height="200" />
+                        <img src="CSS\Imágenes\Disciplinas\Escultura\Hormigón\Hormigón4.webp"
+                            alt="Escultura en hormigón" width="200" height="200" />
+                    </ul>
+
+                    <ul class="submenu-metal">
+                        <li>Metal</li>
+                        <img src="CSS\Imágenes\Disciplinas\Escultura\Metal\Metal1.webp" alt="Escultura en metal"
+                            width="200" height="200" />
+                        <img src="CSS\Imágenes\Disciplinas\Escultura\Metal\Metal2.webp" alt="Escultura en metal"
+                            width="200" height="200" />
+                        <img src="CSS\Imágenes\Disciplinas\Escultura\Metal\Metal3.webp" alt="Escultura en metal"
+                            width="200" height="200" />
+                    </ul>
+
+                    <br>
+                    <br>
+
+                    <li><b>Cerámica</b></li>
+                    <ul class="submenu-bustos">
+                        <li>Bustos</li>
+                        <img src="CSS\Imágenes\Disciplinas\Cerámica\Bustos\Busto1.webp" alt="Busto de cerámica"
+                            width="200" height="200">
+                        <img src="CSS\Imágenes\Disciplinas\Cerámica\Bustos\Busto3.webp" alt="Busto de cerámica"
+                            width="200" height="200">
+                        <img src="CSS\Imágenes\Disciplinas\Cerámica\Bustos\Busto5.webp" alt="Busto de cerámica"
+                            width="200" height="200">
+                    </ul>
+                    <ul class="submenu-jarrones">
+                        <li>Jarrones</li>
+                        <img src="CSS\Imágenes\Disciplinas\Cerámica\Jarrones\Jarrón9.webp" alt="Jarrón de cerámica"
+                            width="200" height="200">
+                        <img src="CSS\Imágenes\Disciplinas\Cerámica\Jarrones\Jarrón5.webp" alt="Jarrón de cerámica"
+                            width="200" height="200">
+                        <img src="CSS\Imágenes\Disciplinas\Cerámica\Jarrones\Jarrón2.webp" alt="Jarrón de cerámica"
+                            width="200" height="200">
+                    </ul>
+                    <ul class="submenu-vajilla">
+                        <li>Vajilla</li>
+                        <img src="CSS\Imágenes\Disciplinas\Cerámica\Vajilla\Vajilla4.webp" alt="Vajilla de cerámica"
+                            width="200" height="200">
+                        <img src="CSS\Imágenes\Disciplinas\Cerámica\Vajilla\Vajilla1.webp" alt="Vajilla de cerámica"
+                            width="200" height="200">
+                        <img src="CSS\Imágenes\Disciplinas\Cerámica\Vajilla\Vajilla3.webp" alt="Vajilla de cerámica"
+                            width="200" height="200">
+                    </ul>
+                </ul>
+            </nav>
+        </section>
+
+        <!-- Columna derecha -->
+        <section class="columna-derecha">
+            <!-- Descripción personal -->
+            <div class="descripcion">
+                <h2>Quién soy</h2>
+                <p>Soy una artista multidisciplinar, apasionada por la creación de obras en diferentes materiales,
+                    creando
+                    piezas
+                    que evocan emoción y conexión.</p>
+                <p>Además de mis producción artística, ofrezco talleres adaptados a todas las edades para acercar el
+                    arte a quienes deseen encontrar su forma de expresión personal diferente</p>
+                <p>Te invito a descubrir mis creaciones y a formar parte de este viaje artístico.</p>
+            </div>
+
+
+            <!--Redes sociales-->
+            <div class="contacto">
+                <div class="iconos-social-media">
+                    <a href="#" title="Whatsapp">
+                        <img src="CSS\Imágenes\RRSS\Instagram.png" alt="Icono de Whatsapp" width="50" height="50">
+                    </a>
+                    <a href="#" title="Instagram">
+                        <img src="CSS\Imágenes\RRSS\Etsy.png" alt="Icono de Instagram" width="50" height="50">
+                    </a>
+                    <a href="#" title="Email">
+                        <img src="CSS\Imágenes\RRSS\TikTok.png" alt="Icono de Email" width="40" height="40">
+                    </a>
+                </div>
+                <br>
+                <div class="newsletter">
+                    <p>¿Quieres estar al día de mi trabajo?</p>
+                    <form action="" class="newsletter-form">
+                        <div class="suscripcion">
+                            <input type="text" id="email" placeholder=" " required>
+                            <label for="email">Tu email</label>
+                        </div>
+                        <input type="submit" class="check" value="¡Suscríbete a mi newsletter!">
+                    </form>
+                </div>
+            </div>
+            <div class="patrocinador">
+                <div class="formulario">
+                    <form action="" class="form">
+                        <h3 class="titulo">Acceso a las subastas</h3>
+                        <br>
+                        <div class="input-container">
+                            <input type="text" class="input" placeholder="a">
+                            <label for="nombre" class="label">Nombre</label>
+                        </div>
+
+                        <div class="input-container">
+                            <input type="text" class="input" placeholder="a">
+                            <label for="telefono" class="label">Teléfono</label>
+                        </div>
+
+                        <div class="input-container">
+                            <input type="text" class="input" placeholder="a">
+                            <label for="usuario" class="label">Usuario</label>
+                        </div>
+
+                        <div class="input-container">
+                            <input type="text" class="input" placeholder="a">
+                            <label for="contraseña" class="label">Contraseña</label>
+                        </div>
+                        <input type="submit" class="submit_button" value="Entrar">
+                    </form>
+                </div>
+            </div>
+
+
+            <div class="subasta">
+                <h2>Obras subastadas</h2>
+                <img src="CSS\Imágenes\Muestrario\Lienzo floral.webp" alt="Pintura floral" width="200" height="200">
+                <img src="CSS\Imágenes\Muestrario\Lienzo primavera.webp" alt="Pintura en acuarela" width="200"
+                    height="200">
+                <img src="CSS\Imágenes\Muestrario\Escultura hormigón 2.webp" alt="Escultura de hormigón" width="200"
+                    height="200">
+                <img src="CSS\Imágenes\Muestrario\Escultura metal 4.webp" alt="Escultura de metal" width="200"
+                    height="200">
+                <img src="CSS\Imágenes\Muestrario\Escultura metal1.webp" alt="Escultura de metal" width="200"
+                    height="200">
+                <img src="CSS\Imágenes\Muestrario\Lienzo invierno.webp" alt="Lienzo con imagen invernal" width="200"
+                    height="200">
+                <img src="CSS\Imágenes\Muestrario\Tríptico invierno.webp" alt="Tríptico de imagen invernal" width="200"
+                    height="200">
+                <img src="CSS\Imágenes\Muestrario\Navidad.jpg" alt="Colección de navidad" width="200" height="200">
+                <img src="CSS\Imágenes\Muestrario\Jarron.webp" alt="Jarrón sencillo de arcilla" width="200"
+                    height="200">
+                <img src="CSS\Imágenes\Muestrario\Hormigón1.webp" alt="Escultura de hormigón" width="200" height="200">
+                <img src="CSS\Imágenes\Muestrario\Escultura metal3.webp" alt="Escultura de metal" width="200"
+                    height="200">
+                <img src="CSS\Imágenes\Colecciones\Escultura metal2.webp" alt="Escultura de metal" width="200"
+                    height="200">
+            </div>
+        </section>
+    </main>
+    <br>
+    <footer>
+        <ul class="terminos-legales">
+            <li><a href="#">¿Dónde estoy?</a></li>
+            <li><a href="#">Términos y condiciones</a></li>
+        </ul>
+
+        <p id="Copyright"> ©Copyright 2025 de P.Caamaño. Todos los derechos tratados con cuidado.</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,433 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "lato", sans-serif;
+}
+
+/* Estilo general */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #111;
+}
+
+/* Cabecera */
+header {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 20px;
+    background-color: #f3f3f3;
+}
+
+.logo {
+    width: 30%;
+    height: auto;
+    display: block;
+    margin: auto 0;
+    position: relative;
+}
+
+.titulo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.titulo h1 {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 4em;
+    color: #222;
+}
+
+.iconos-superiores {
+    display: flex;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    gap: 10px;
+}
+
+.iconos-superiores img {
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
+}
+
+/* Carrusel */
+.carrusel {
+    position: relative;
+    max-width: 800px;
+    height: 400px;
+    overflow: hidden;
+    margin: 0 auto; /* Centrar el carrusel */
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+/* Oculta los botones*/
+.carrusel input {
+    display: none;
+}
+
+/* Contenedor para las imágenes del carrusel*/
+.slides {
+    display: flex;
+    width: 100%; /*4 imágenes, cada una ocupa el 100%*/
+    animation: slideAnimation 20s infinite;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    display: flex;
+    flex: 0 0 100%;
+    justify-content: center;
+    align-items: center; 
+}
+
+.slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+
+/*Transición de las imágenes*/
+@keyframes slideAnimation {
+    0% { transform: translateX(0%); }       /* Primera imagen */
+    25% { transform: translateX(-100%); }  /* Segunda imagen */
+    50% { transform: translateX(-200%); }  /* Tercera imagen */
+    75% { transform: translateX(-300%); }  /* Cuarta imagen */
+    100% { transform: translateX(0%); }   
+}
+
+
+/*GENERAL*/
+.contenedor-principal {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+/*Aseguramos que la columna de la izq ocupe el 60% de la pantalla*/
+.columna-izquierda {
+    width: 60%;
+    display: absolute;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding-left: 5%;
+}
+/*Aseguramos que la columna de la dcha ocupe el 40% de la pantalla*/
+.columna-derecha {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/*COLUMNA IZQUIERDA*/
+
+/* Disciplinas */
+.disciplinas {
+    background-color: #f3f3f3;
+    padding: 15px;
+    border: 1px solid #ddd;
+}
+
+.disciplinas h2 {
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.disciplinas ul li {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    color: #333;
+}
+
+.disciplinas img {
+    padding: 0 30px;
+    width: 30%;
+    height: auto;
+}
+
+
+/* COLUMNA DERECHA */
+
+/* Sobre mi */
+.descripcion {
+    padding: 20px 20px;
+    position: right;
+    background-color: #f3f3f3;
+    border: 1px solid #ddd;
+    height: auto;
+}
+
+.descripcion h2 {
+    font-size: 1.5em;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.descripcion p {
+    margin-bottom: 10px;
+    font-size: 1em;
+    color: #555;
+    align-items: center;
+}
+
+/*Redes sociales*/
+
+.contacto {
+    display: flex;
+    gap: 10px;
+    padding: 0px 20px 20px 20px;
+    position: right;
+    background-color: #f3f3f3;
+    border: 1px solid #ddd;
+    flex-direction: column;
+}
+
+    .iconos-social-media {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    }
+
+    .iconos-social-media img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    }  
+
+.newsletter {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 20px;
+    background-color: #f3f3f3;
+    width: 400px;
+}
+
+.newsletter p {
+    font-size: 1.2em;
+    color: #444;
+}
+
+.newsletter-form {
+    width: 100%;
+}
+
+.suscripcion {
+    position: relative;
+    height: 45px;
+    width: 90%;
+    margin-bottom: 17px;
+}
+
+    .suscripcion input {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    border: 1px solid #DADCE0;
+    border-radius: 7px;
+    font-size: 16px;
+    padding: 0 20px;
+    outline: none;
+    background: none;
+    z-index: 1;
+
+    }
+
+    .suscripcion input[type="text"]:focus {
+    border-color: rgb(228, 185, 69);
+    }
+
+    label {
+        position: absolute;
+        top: 1px;
+        left: 15x;
+        padding: 0 4px;
+        background-color: #f3f3f3;
+        color: #9da0a7;
+        transition: 0.5s;
+        z-index: 0;
+        font-size: 13px;
+    }
+
+   .suscripcion input[type="text"]:focus + label {
+    top: -7px;
+    left: 3px;
+    z-index: 10;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(199, 152, 65);
+    }
+
+    .check {
+    display: inline-block;
+    padding: 10px 30px;
+    border: none;
+    background-color: rgba(179, 132, 46, 0.856);
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+
+    }
+    .check:hover {
+    background-color: #dfa12f;
+    transform: translateY(-2px);
+    }
+
+
+.patrocinador {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 20px 20px;
+    background-color: #f3f3f3;
+    border: 1px solid #ddd;
+}
+
+.formulario {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: auto;
+}
+
+.form {
+    width: 400px;
+    border-radius: 8px;
+    padding: 20px 40px;
+}
+
+
+.input-container {
+    position: relative;
+    height: 45px;
+    width: 90%;
+    margin-bottom: 17px;
+}
+
+.input {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    border: 1px solid #DADCE0;
+    border-radius: 7px;
+    font-size: 16px;
+    padding: 0 20px;
+    outline: none;
+    background: none;
+    z-index: 1;
+}
+
+/* Esconde el texto de las cajas */
+::placeholder {
+    color: transparent;
+}
+
+
+.label {
+    position: absolute;
+    top: 1px;
+    left: 15x;
+    padding: 0 4px;
+    background-color: #f3f3f3;
+    color: #9da0a7;
+    transition: 0.5s;
+    z-index: 0;
+    font-size: 13px;
+}
+
+.submit_button {
+    display: block;
+    margin-left: auto;
+    padding: 15px 30px;
+    border: none;
+    background-color: rgba(179, 132, 46, 0.856);
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 30px;
+}
+
+.submit_button:hover {
+    background-color: #dfa12f;
+    transform: translateY(-2px);
+}
+
+.input:focus+.label {
+    top: -7px;
+    left: 3px;
+    z-index: 10;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(199, 152, 65);
+}
+
+.input:focus {
+    border: 2px solid rgb(228, 185, 69);
+}
+
+.subasta {
+    flex-direction: column;
+    height: auto;
+    padding: 0 0%;
+    margin: 0 0;
+    }
+
+.subasta h2 {
+    text-align: center;
+}
+
+
+/* FOOTER */
+footer {
+    background-color: #185066bd;
+    color: burlywood;
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+.terminos-legales a {
+    margin: 0 1rem;
+    text-decoration: none;
+    color: burlywood;
+}
+
+
+
+/* AJUSTES RESPONSIVOS */
+/*Asegura el tamaño*/
+@media (max-width: 768px) {
+    .contenedor-principal {
+        flex-direction: column;     /*Conseguimos que cambie la orientación horizontal a una vertical para diseño móvil*/
+    }
+
+    .carrusel,
+    .descripcion {
+        width: 100%; /*Ocupa todo el ancho de la pantalla*/
+    }
+
+    .menu-disciplinas ul {
+        flex-direction: column;
+        align-items: flex-start;
+    } /*adapta los menús y submenús a la pantalla*/
+
+    .menu-disciplinas ul li {
+        margin-bottom: 1rem;
+    }
+}
