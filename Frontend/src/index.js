@@ -1,5 +1,9 @@
 import { fetchObras, createObra, updateObra, deleteObra } from './api.js';
 
+document.getElementById('login-button').addEventListener('click', () => {
+    window.location.href = 'login.html';
+});
+
 document.addEventListener('DOMContentLoaded', async () => {
     const obrasContainer = document.getElementById('obras-container');
 

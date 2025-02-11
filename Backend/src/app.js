@@ -1,33 +1,25 @@
 const express = require('express');
- 
+const jwt = require('jsonwebtoken');
+const cors = require('cors');
+
 const app = express();
 app.use(express.json());
- 
-const disciplinas = {
-    'Lienzos': {
-        acrilico: 3,
-        oleo: 5,
-        acuarela: 25
-    },
-    'Esculturas': {
-        altitude: 488,
-        population: 53305
-    },
-    'Cerámica': {
-        altitude: 915,
-        population: 25900
+app.use(cors());
+
+const users = [{ username: 'admin', password: 'admin' }];
+
+app.post('/api/login', (req, res) => {
+    const { username, password } = req.body;
+    const user = users.find(u => u.username === username && u.password === password);
+
+    if (user) {
+        const token = jwt.sign({ username }, 'secreto', { expiresIn: '1h' });
+        res.json({ token });
+    } else {
+        res.status(401).json({ message: 'Credenciales incorrectas' });
     }
-};
- 
-app.get('/arte', (req, res) => {
-    res.json(arte);
 });
- 
-app.get('/arte:disciplina', (req, res) => {
-    const disciplina = req.params.disciplina;
-    res.json(arte[disciplinas]);
-});
- 
+
  
 app.listen(8080, () => {
     console.log('Iniciando el backend en el puerto 8080');

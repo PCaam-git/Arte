@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Administración - La vida en lienzo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./style.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Panel de Administración</h1>
+    <button id="logout-button">Cerrar sesión</button>
+
+    <h2>Agregar Nueva Obra</h2>
+    <form id="obra-form">
+        <input type="text" id="descripcion" placeholder="Descripción" required>
+        <input type="date" id="fecha_creacion" required>
+        <input type="number" id="precio" placeholder="Precio" required>
+        <input type="text" id="imagen" placeholder="URL de la imagen">
+        <input type="number" id="subdisciplina_id" placeholder="ID de la Subdisciplina" required>
+        <button type="submit">Agregar</button>
+    </form>
+
+    <h2>Lista de Obras</h2>
+    <section id="obras-container"></section>
+
+    <script src="admin.js"></script>
+</body>
+</html>
