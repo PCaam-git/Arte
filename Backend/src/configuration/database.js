@@ -1,11 +1,9 @@
 const knex = require('knex');
+const knexfile = require('./knexfile.js');
 
-const db = knex({
-  client: 'sqlite3',
-  connection: {
-    filename: './arte.db' 
-  },
-  useNullAsDefault: true
-});
+const environment = process.env.NODE_ENV || 'development';
+const config = knexfile[environment];
 
-exports.db = db;
+const db = knex(config);
+
+module.exports = db;
