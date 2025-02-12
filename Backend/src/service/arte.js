@@ -1,23 +1,23 @@
-const { db } = require('../configuration/database');
+const db = require('../configuration/database');
 
 const findAllObras = async () => {
   return await db.select('*').from('obras');
 };
 
-const findObra = async (id) => {
-  return await db('obras').where('id', id).first();
+const findObra = async (ID_obra) => {
+  return await db('obras').where('ID_obra', ID_obra).first();
 };
 
 const registerObra = async (obra) => {
   return await db('obras').insert(obra);
 };
 
-const modifyObra = async (id, obra) => {
-  return await db('obras').where('id', id).update(obra);
+const modifyObra = async (ID_obra, obra) => {
+  return await db('obras').where('ID_obra', ID_obra).update(obra);
 };
 
-const removeObra = async (id) => {
-  return await db('obras').where('id', id).del();
+const removeObra = async (ID_obra) => {
+  return await db('obras').where('ID_obra', ID_obra).del();
 };
 
 module.exports = { findAllObras, findObra, registerObra, modifyObra, removeObra };

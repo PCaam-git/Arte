@@ -3,10 +3,18 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 
 const app = express();
+
 app.use(express.json());
 app.use(cors());
 
+const arteRoutes = require('./route/arte'); 
+app.use('/api/arte', arteRoutes); 
+
+
 const users = [{ username: 'admin', password: 'admin' }];
+
+const authRoutes = require('./route/auth');
+app.use('/api', authRoutes);
 
 app.post('/api/login', (req, res) => {
     const { username, password } = req.body;
@@ -20,7 +28,10 @@ app.post('/api/login', (req, res) => {
     }
 });
 
+console.log('Rutas de arte:', arteRoutes.stack.map(layer => layer.route?.path));
+console.log('Rutas de autenticación:', authRoutes.stack.map(layer => layer.route?.path));
+
  
-app.listen(8080, () => {
-    console.log('Iniciando el backend en el puerto 8080');
+app.listen(8090, () => {
+    console.log('Iniciando el backend en el puerto 8090');
 });
