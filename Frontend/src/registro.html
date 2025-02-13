@@ -11,40 +11,91 @@
 
 <body>
     <header>
+        <div class="contenido-header">
+            <div class="titulo">
+                <img class="logo" src="CSS\Imágenes\Iconos\Logo SF.png" alt="Logotipo">
+                <h1>La vida en lienzo</h1>
+            </div>
+            <div class="iconos-superiores">
+                <a href="#" title="Buscar">
+                    <img src="CSS\Imágenes\Iconos\Lupa.png" alt="Icono de búsqueda" width="50" height="50">
+                </a>
+                <a href="#" title="Usuario" id="login-button">
+                    <img src="CSS\Imágenes\Iconos\Usuario.png" alt="Icono de usuario" width="50" height="50">
+                </a>
+                <a href="#" title="Carrito">
+                    <img src="CSS\Imágenes\Iconos\Cesta compra.png" alt="Icono de carrito" width="50" height="50">
+                </a>
+            </div>
+        </div>
+    </header>
+    <header>
         <div class="contenido-header text-center py-3">
             <h1>La vida en lienzo</h1>
         </div>
     </header>
+        <main class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="text-center">Iniciar Sesión</h3>
+                            <form id="login-form">
+                                <div class="input-container">
+                                    <input type="text" class="input" placeholder="a">
+                                    <label for="usuario" class="label">Usuario</label>
+                                </div>
+        
+                                <div class="input-container">
+                                    <input type="text" class="input" placeholder="a">
+                                    <label for="contraseña" class="label">Contraseña</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
-    <main class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="text-center">Crear Cuenta</h3>
-                        <form id="register-form">
-                            <div class="mb-3">
-                                <label for="new-username" class="form-label">Usuario</label>
-                                <input type="text" class="form-control" id="new-username" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Correo Electrónico</label>
-                                <input type="email" class="form-control" id="email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="new-password" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="new-password" required>
-                            </div>
-                            <button type="submit" class="btn btn-success w-100">Registrarse</button>
-                        </form>
-                        <p class="text-center mt-3">
-                            ¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a>
-                        </p>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="text-center">Crear Cuenta</h3>
+                            <form id="register-form">
+                                <div class="input-container">
+                                    <input type="text" class="input" placeholder="a">
+                                    <label for="nombre" class="label">Nombre</label>
+                                </div>
+        
+                                <div class="input-container">
+                                    <input type="text" class="input" placeholder="a">
+                                    <label for="email" class="label">Email</label>
+                                </div>
+        
+                                <div class="input-container">
+                                    <input type="text" class="input" placeholder="a">
+                                    <label for="usuario" class="label">Usuario</label>
+                                </div>
+        
+                                <div class="input-container">
+                                    <input type="text" class="input" placeholder="a">
+                                    <label for="contraseña" class="label">Contraseña</label>
+                                </div>
+                                <input type="submit" class="submit_button" value="Registrarse">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
+
+    <footer>
+        <ul class="terminos-legales">
+            <li><a href="#">¿Dónde estoy?</a></li>
+            <li><a href="#">Términos y condiciones</a></li>
+        </ul>
+
+        <p id="Copyright"> ©Copyright 2025 de P.Caamaño. Todos los derechos tratados con cuidado.</p>
+    </footer>
 
     <script src="register.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
