@@ -13,12 +13,6 @@ const getObra = async (req, res) => {
     res.json(obra);
 };
 
-/*const postObra = async (req, res) => {
-    const { descripcion, fecha_creacion, precio, imagen, ID_disciplina } = req.body;
-    await registerObra({ descripcion, fecha_creacion, precio, imagen, ID_disciplina });
-    res.status(201).json({ message: 'Obra creada' });
-};*/
-
 const postObra = async (req, res) => {
     console.log("Datos recibidos:", req.body);  // <-- Agregar esta línea
     const { ID_disciplina, ID_subdisciplina, descripcion, fecha_creacion, imagen, precio } = req.body;
@@ -33,7 +27,7 @@ const postObra = async (req, res) => {
 
 
 const putObra = async (req, res) => {
-    const { descripcion, fecha_creacion, precio, imagen } = req.body;
+    const { ID_disciplina, ID_subdisciplina, descripcion, fecha_creacion, imagen, precio } = req.body;
     await modifyObra(req.params.ID_obra, { descripcion, fecha_creacion, precio, imagen, ID_disciplina });
     res.status(204).json({});
 };
