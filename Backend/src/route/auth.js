@@ -16,14 +16,14 @@ router.post('/login', async (req, res) => {
 
     // Verificar si es el administrador
     if (usuario === adminCredentials.usuario && contraseña === adminCredentials.contraseña) {
-        const token = jwt.sign({ usuario }, 'secreto', { expiresIn: '1h' });
+        const token = jwt.sign({ usuario, role: 'admin' }, 'secreto', { expiresIn: '1h' });
         return res.json({ token, role: 'admin' });
     }
 
     // Verificar si es un usuario normal
     const user = users.find(u => u.usuario === usuario);
     if (user && await bcrypt.compare(contraseña, user.contraseña)) {
-        const token = jwt.sign({ usuario }, 'secreto', { expiresIn: '1h' });
+        const token = jwt.sign({ usuario, role: 'user' }, 'secreto', { expiresIn: '1h' });
         return res.json({ token, role: 'user' });
     } else {
         return res.status(401).json({ error: 'Credenciales incorrectas' });
@@ -48,8 +48,24 @@ router.post('/register', async (req, res) => {
 
     // Agregar el nuevo usuario a la lista
     users.push({ nombre, usuario, email, contraseña: hashedPassword });
-    console.log(users);
     res.status(201).json({ message: "Usuario registrado exitosamente" });
+});
+
+// Endpoint para verificar el token
+router.post('/verify-token', (req, res) => {
+    const authHeader = req.headers['authorization'];
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ error: 'Token no proporcionado o mal formado' });
+    }
+
+    const token = authHeader.split(' ')[1];
+
+    jwt.verify(token, 'secreto', (err, decoded) => {
+        if (err) {
+            return res.status(401).json({ error: 'Token inválido o expirado' });
+        }
+        res.json({ role: decoded.role });
+    });
 });
 
 module.exports = router;
