@@ -2,13 +2,13 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const users = [
-  { id: 1, username: 'admin', password: bcrypt.hashSync('admin123', 10) }
+  { id: 1, usuario: 'admin', contraseña: bcrypt.hashSync('admin123', 10) }
 ];
 
-const authenticateUser = async (username, password) => {
-  const user = users.find(u => u.username === username);
-  if (user && bcrypt.compareSync(password, user.password)) {
-    return jwt.sign({ id: user.id, username: user.username }, 'secreto', { expiresIn: '1h' });
+const authenticateUser = async (usuario, contraseña) => {
+  const user = users.find(u => u.usuario === usuario);
+  if (user && bcrypt.compareSync(contraseña, user.contraseña)) {
+    return jwt.sign({ id: user.id, usuario: user.usuario }, 'secreto', { expiresIn: '1h' });
   }
   throw new Error('Credenciales incorrectas');
 };
