@@ -1,0 +1,121 @@
+{
+  "v": 6,
+  "name": "Arte",
+  "folders": [],
+  "requests": [
+    {
+      "v": "11",
+      "name": "Post obras",
+      "method": "POST",
+      "endpoint": "http://localhost:8090/api/arte/obras",
+      "params": [],
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "active": true,
+          "description": ""
+        }
+      ],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"ID_disciplina\": 1,\n  \"ID_subdisciplina\": 2,\n  \"descripcion\": \"Nueva pintura al óleo\",\n  \"fecha_creacion\": \"2024-02-12\",\n  \"imagen\": \"nueva_pintura.jpg\",\n  \"precio\": 300\n}\n"
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "Get obras",
+      "method": "GET",
+      "endpoint": "http://localhost:8090/api/arte/obras",
+      "params": [],
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "active": true,
+          "description": ""
+        }
+      ],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"ID_disciplina\": 1,\n  \"ID_subdisciplina\": 2,\n  \"descripcion\": \"Nueva pintura al óleo\",\n  \"fecha_creacion\": \"2024-02-12\",\n  \"imagen\": \"nueva_pintura.jpg\",\n  \"precio\": 300\n}\n"
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "Put obras",
+      "method": "PUT",
+      "endpoint": "http://localhost:8090/api/arte/obras/4",
+      "params": [],
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "active": true,
+          "description": ""
+        }
+      ],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"ID_disciplina\": 4,\n  \"ID_subdisciplina\": 2,\n  \"descripcion\": \"Pintura abstracta\",\n  \"fecha_creacion\": \"2024-02-12\",\n  \"imagen\": \"pintura_abstracta.jpg\",\n  \"precio\": 250\n}\n"
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "Delete obras",
+      "method": "DELETE",
+      "endpoint": "http://localhost:8090/api/arte/obras/4",
+      "params": [],
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "active": true,
+          "description": ""
+        }
+      ],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"ID_disciplina\": 1,\n  \"ID_subdisciplina\": 2,\n  \"descripcion\": \"Nueva pintura al óleo\",\n  \"fecha_creacion\": \"2024-02-12\",\n  \"imagen\": \"nueva_pintura.jpg\",\n  \"precio\": 300\n}\n"
+      },
+      "requestVariables": [],
+      "responses": {}
+    }
+  ],
+  "auth": {
+    "authType": "none",
+    "authActive": true
+  },
+  "headers": [],
+  "_ref_id": "coll_m6i5btj2_99f63586-e85e-4bb2-98a2-8503a1bb5fba"
+}
