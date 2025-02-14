@@ -7,6 +7,13 @@ document.getElementById('login-button').addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', async () => {
     const obrasContainer = document.getElementById('obras-container');
 
+    // Manejo del cierre de sesión
+    document.getElementById("cerrar-sesion").addEventListener("click", () => {
+        localStorage.removeItem("token");
+        alert("Sesión cerrada correctamente");
+        window.location.href = "index.html";
+    });
+
     // Cargar obras de la API
     const obras = await fetchObras();
     obras.forEach(obra => {
@@ -21,17 +28,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         `;
         obrasContainer.appendChild(obraElement);
     });
-});
 
-    //Formulario creación de obras
-document.getElementById('obra-form').addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const descripcion = document.getElementById('descripcion').value;
-    const fecha_creacion = document.getElementById('fecha_creacion').value;
-    const precio = document.getElementById('precio').value;
-    const imagen = document.getElementById('imagen').value;
-    const ID_subdisciplina = document.getElementById('ID_subdisciplina').value;
+    // Formulario creación de obras
+    document.getElementById('obra-form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
 
-    await createObra({ descripcion, fecha_creacion, precio, imagen, ID_subdisciplina });
-    location.reload();
+        await createObra(formData);
+        location.reload();
+    });
 });

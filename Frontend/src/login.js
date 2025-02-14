@@ -1,20 +1,28 @@
+const API_URL = 'http://localhost:8090/api/login';
+
 document.getElementById('login-form').addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    const usuario = document.getElementById('usuario').value;
+    const contraseña = document.getElementById('contraseña').value;
 
-    const response = await fetch('http://localhost:8080/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-    });
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ usuario, contraseña })
+        });
 
-    const data = await response.json();
-    if (response.ok) {
-        localStorage.setItem('token', data.token);
-        window.location.href = 'admin.html';
-    } else {
-        document.getElementById('error-message').textContent = 'Usuario o contraseña incorrectos';
+        const data = await response.json();
+        if (response.ok) {
+            alert('Inicio de sesión exitoso');
+            localStorage.setItem('token', data.token);
+            window.location.href = 'admin.html';
+        } else {
+            document.getElementById('error-message').textContent = 'Usuario o contraseña incorrectos';
+        }
+    } catch (error) {
+        console.error('Error en la petición:', error);
+        document.getElementById('error-message').textContent = 'Error en la petición';
     }
 });

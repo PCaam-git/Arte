@@ -8,8 +8,12 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use('/uploads', express.static('uploads')); // Servir archivos estáticos desde la carpeta 'uploads'
 
+const uploadsPath = path.join(__dirname, '../uploads');
+console.log('Ruta absoluta de uploads:', path.join(__dirname, '../uploads'));
+
+// Servir archivos estáticos desde la carpeta 'uploads'
+app.use('/uploads', express.static(uploadsPath));
 const arteRoutes = require('./route/arte'); 
 app.use('/api/arte', arteRoutes); 
 const users = [{ usuario: 'admin', contraseña: 'admin123' }];
@@ -30,8 +34,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Ruta para agregar una nueva obra con imagen
-app.post('/api/obras', upload.single('imagen'), async (req, res) => {
-    const { descripcion, fecha, precio, subdisciplina_id } = req.body;
+app.post('/api/arte/obras', upload.single('imagen'), async (req, res) => {
+    const { descripcion, fecha, precio, ID_disciplina, ID_subdisciplina } = req.body;
     const imagen = req.file ? `/uploads/${req.file.filename}` : null;
 
     if (!descripcion || !fecha || !precio || !imagen) {
@@ -40,7 +44,7 @@ app.post('/api/obras', upload.single('imagen'), async (req, res) => {
 
     // Guardar en la base de datos (esto depende de cómo estés almacenando los datos)
     // Aquí se usa un array temporal 'obras' para almacenar las obras
-    obras.push({ id: Date.now(), descripcion, fecha, precio, imagen, subdisciplina_id });
+    obras.push({ id: Date.now(), descripcion, fecha, precio, imagen, ID_disciplina, ID_subdisciplina });
     res.status(201).json({ message: "Obra agregada correctamente", imagen });
 });
 
