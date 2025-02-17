@@ -16,12 +16,12 @@ body {
 /* Cabecera */
 header {
     border-bottom: 1px solid #ddd;
-    padding: 10px 20px;
+    padding: 5px 10px;
     background-color: #f3f3f3;
 }
 
 .logo {
-    width: 30%;
+    width: 10%;
     height: auto;
     display: block;
     margin: auto 0;
@@ -422,12 +422,28 @@ footer {
         width: 100%; /*Ocupa todo el ancho de la pantalla*/
     }
 
-    .menu-disciplinas ul {
+  .menu-disciplinas ul {
         flex-direction: column;
         align-items: flex-start;
     } /*adapta los menús y submenús a la pantalla*/
 
     .menu-disciplinas ul li {
         margin-bottom: 1rem;
+    }
+
+    /* Ajustes responsivos para columna-izquierda */
+    .columna-izquierda {
+        width: 100%; /* Ocupa todo el ancho de la pantalla */
+        padding-left: 0; /* Elimina el padding izquierdo */
+    }
+
+    .columna-izquierda img {
+        width: 100%; /* Asegura que las imágenes ocupen todo el ancho disponible */
+        height: auto; /* Mantiene la proporción de las imágenes */
+    }
+
+    /* Ajustes responsivos para columna-derecha */
+    .columna-derecha {
+        width: 100%; /* Ocupa todo el ancho de la pantalla */
     }
 }
