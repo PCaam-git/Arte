@@ -1,6 +1,6 @@
 const API_URL = "http://localhost:8090/api/arte";
 let obras = []; // Declaración global para almacenar las obras
-let token = localStorage.getItem('token');
+let token = localStorage.getItem("token");
 const obrasLista = document.getElementById("obras-lista");
 const obraForm = document.getElementById("obra-form");
 const logoutButton = document.getElementById("cerrar-sesion");
@@ -9,14 +9,33 @@ document.addEventListener("DOMContentLoaded", async () => {
   await cargarObras(); // Cargar las obras cuando la página se cargue
 });
 
-async function cargarObras() {
+/*async function cargarObras() {
   try {
     const response = await fetch(`${API_URL}/obras`);
     obras = await response.json();
+   
     console.log("Obras cargadas desde la API:", obras); // Verificación
     mostrarObras();
   } catch (error) {
     console.error("Error al cargar las obras", error);
+  }
+}*/
+
+async function cargarObras() {
+  try {
+    const response = await fetch(`${API_URL}/obras`);
+    const data = await response.json();
+
+    console.log("📌 Datos recibidos de la API:", data); // <-- Agregar este log
+
+    if (data.length > 0) {
+      console.log("🔍 Estructura de la primera obra:", data[0]); // <-- Ver la estructura exacta
+    }
+
+    obras = data; // Almacenar los datos obtenidos
+    mostrarObras();
+  } catch (error) {
+    console.error("❌ Error al cargar las obras", error);
   }
 }
 
@@ -31,12 +50,12 @@ function mostrarObras() {
 
     obraElemento.innerHTML = `
             <div class="card">
-                <img src="${obra.imagen}" class="card-img-top obra-imagen" alt="${obra.descripcion}" data-id="${obra.id}">
+                <img src="http://localhost:8090/uploads/${obra.imagen}" class="card-img-top obra-imagen" alt="${obra.descripcion}" data-id="${obra.ID_obra}">
                 <div class="card-body">
                     <h5 class="card-title">${obra.descripcion}</h5>
                     <p class="card-text">Precio: ${obra.precio}€</p>
-                    <button onclick="eliminarObra(${obra.id})" class="btn btn-danger w-100">Eliminar</button>
-                    <button onclick="cargarFormularioEdicion(${obra.id})" class="btn btn-primary w-100 mt-2">Editar</button>
+                    <button onclick="eliminarObra(${obra.ID_obra})" class="btn btn-danger w-100">Eliminar</button>
+                    <button onclick="cargarFormularioEdicion(${obra.ID_obra})" class="btn btn-primary w-100 mt-2">Editar</button>
                 </div>
             </div>
         `;
@@ -58,7 +77,7 @@ window.cargarFormularioEdicion = function (id) {
 
   document.getElementById("descripcion").value = obra.descripcion;
   document.getElementById("precio").value = obra.precio;
-  obraForm.dataset.id = obra.id;
+  obraForm.dataset.id = ID_obra;
 };
 
 window.eliminarObra = async function (id) {
@@ -71,7 +90,7 @@ window.eliminarObra = async function (id) {
 
       if (response.ok) {
         alert("Obra eliminada correctamente");
-        obras = obras.filter((obra) => obra.id !== id);
+        obras = obras.filter((obra) => ID_obra !== id);
         mostrarObras();
       } else {
         alert("Error al eliminar la obra");
