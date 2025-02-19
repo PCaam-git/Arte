@@ -1,153 +1,142 @@
-const API_URL = "http://localhost:8090/api/arte";
-let obras = []; // Declaración global para almacenar las obras
-let token = localStorage.getItem("token");
-const obrasLista = document.getElementById("obras-lista");
-const obraForm = document.getElementById("obra-form");
-const logoutButton = document.getElementById("cerrar-sesion");
+// Importamos las funciones de la API
+import { fetchObras, createObra, updateObra, deleteObra } from "./api.js";
 
+// Variables globales
+let obras = [];
+const token = localStorage.getItem("token");
+
+// Cuando la página se carga completamente
 document.addEventListener("DOMContentLoaded", async () => {
-  await cargarObras(); // Cargar las obras cuando la página se cargue
+   // Verificamos si el usuario está autenticado
+   if (!token) {
+       window.location.href = "login.html";
+       return;
+   }
+   // Cargamos las obras al iniciar
+   await cargarObras();
 });
 
-/*async function cargarObras() {
-  try {
-    const response = await fetch(`${API_URL}/obras`);
-    obras = await response.json();
-   
-    console.log("Obras cargadas desde la API:", obras); // Verificación
-    mostrarObras();
-  } catch (error) {
-    console.error("Error al cargar las obras", error);
-  }
-}*/
-
+// Función para cargar todas las obras desde el servidor
 async function cargarObras() {
-  try {
-    const response = await fetch(`${API_URL}/obras`);
-    const data = await response.json();
-
-    console.log("📌 Datos recibidos de la API:", data); // <-- Agregar este log
-
-    if (data.length > 0) {
-      console.log("🔍 Estructura de la primera obra:", data[0]); // <-- Ver la estructura exacta
-    }
-
-    obras = data; // Almacenar los datos obtenidos
-    mostrarObras();
-  } catch (error) {
-    console.error("❌ Error al cargar las obras", error);
-  }
+   try {
+       obras = await fetchObras();
+       mostrarObras();
+   } catch (error) {
+       console.error("Error al cargar obras:", error);
+       alert(error.message);
+   }
 }
 
+// Función para mostrar las obras en el HTML
 function mostrarObras() {
-  console.log("Ejecutando mostrarObras(). Datos de obras:", obras);
-  const obrasLista = document.getElementById("obras-lista");
-  obrasLista.innerHTML = "";
+   const obrasLista = document.getElementById("obras-lista");
+   
+   // Creamos el HTML para cada obra
+   obrasLista.innerHTML = obras.map(obra => `
+       <div class="col-md-4 mb-3">
+           <div class="card">
+               <img src="http://localhost:8090/uploads/${obra.imagen}" 
+                    class="card-img-top" 
+                    alt="${obra.descripcion}"
+                    onerror="this.src='placeholder.jpg'">
+               <div class="card-body">
+                   <h5 class="card-title">${obra.descripcion}</h5>
+                   <p class="card-text">Precio: ${obra.precio}€</p>
+                   <button class="btn btn-danger w-100 btn-eliminar" data-id="${obra.ID_obra}">Eliminar</button>
+                   <button class="btn btn-primary w-100 mt-2 btn-editar" data-id="${obra.ID_obra}">Editar</button>
+               </div>
+           </div>
+       </div>
+   `).join("");
 
-  obras.forEach((obra) => {
-    const obraElemento = document.createElement("div");
-    obraElemento.classList.add("col-md-4", "mb-3");
+   // Añadimos los event listeners a los botones
+   const botonesEliminar = obrasLista.querySelectorAll(".btn-eliminar");
+   const botonesEditar = obrasLista.querySelectorAll(".btn-editar");
 
-    obraElemento.innerHTML = `
-            <div class="card">
-                <img src="http://localhost:8090/uploads/${obra.imagen}" class="card-img-top obra-imagen" alt="${obra.descripcion}" data-id="${obra.ID_obra}">
-                <div class="card-body">
-                    <h5 class="card-title">${obra.descripcion}</h5>
-                    <p class="card-text">Precio: ${obra.precio}€</p>
-                    <button onclick="eliminarObra(${obra.ID_obra})" class="btn btn-danger w-100">Eliminar</button>
-                    <button onclick="cargarFormularioEdicion(${obra.ID_obra})" class="btn btn-primary w-100 mt-2">Editar</button>
-                </div>
-            </div>
-        `;
-    obrasLista.appendChild(obraElemento);
-  });
+   botonesEliminar.forEach(boton => {
+       boton.addEventListener("click", () => eliminarObra(boton.dataset.id));
+   });
+
+   botonesEditar.forEach(boton => {
+       boton.addEventListener("click", () => cargarFormularioEdicion(boton.dataset.id));
+   });
 }
 
-// Hacemos las funciones accesibles desde el HTML
-window.cargarFormularioEdicion = function (id) {
-  console.log("ID de la obra seleccionada:", id);
+// Función para cargar los datos de una obra en el formulario para su edición
+function cargarFormularioEdicion(id) {
+   const obra = obras.find(o => o.ID_obra === parseInt(id));
+   
+   if (!obra) {
+       console.error("No se encontró la obra con ID:", id);
+       return;
+   }
 
-  const obra = obras.find((o) => o.id === id);
-  if (!obra) {
-    console.error("No se encontró la obra con ID:", id);
-    return;
-  }
+   const form = document.getElementById("obra-form");
+   
+   // Rellenamos los campos del formulario
+   form.descripcion.value = obra.descripcion;
+   form.fecha_creacion.value = obra.fecha_creacion;
+   form.precio.value = obra.precio;
+   form.ID_disciplina.value = obra.ID_disciplina;
+   form.ID_subdisciplina.value = obra.ID_subdisciplina;
 
-  console.log("Datos de la obra encontrada:", obra);
-
-  document.getElementById("descripcion").value = obra.descripcion;
-  document.getElementById("precio").value = obra.precio;
-  obraForm.dataset.id = ID_obra;
-};
-
-window.eliminarObra = async function (id) {
-  if (confirm("¿Estás seguro de que quieres eliminar esta obra?")) {
-    try {
-      const response = await fetch(`${API_URL}/obras/${id}`, {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      if (response.ok) {
-        alert("Obra eliminada correctamente");
-        obras = obras.filter((obra) => ID_obra !== id);
-        mostrarObras();
-      } else {
-        alert("Error al eliminar la obra");
-      }
-    } catch (error) {
-      console.error("Error al eliminar la obra:", error);
-    }
-  }
-};
-
-// Definir función validarObra
-function validarObra() {
-  const descripcion = document.getElementById("descripcion").value.trim();
-  const precio = document.getElementById("precio").value.trim();
-
-  if (!descripcion || !precio) {
-    alert("Todos los campos son obligatorios.");
-    return false;
-  }
-  return true;
+   // Guardamos la imagen actual y configuramos modo edición
+   form.dataset.imagenActual = obra.imagen;
+   form.dataset.modo = "editar";
+   form.dataset.ID_obra = id;
+   form.querySelector('button[type="submit"]').textContent = "Actualizar";
 }
 
-obraForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  if (!validarObra()) return;
+// Manejador del formulario para crear/editar obras
+document.getElementById("obra-form").addEventListener("submit", async (event) => {
+   event.preventDefault();
+   const form = event.target;
+   const formData = new FormData(form);
 
-  const id = obraForm.dataset.id;
-  const formData = new FormData(obraForm);
-  formData.append(
-    "descripcion",
-    document.getElementById("descripcion").value.trim()
-  );
-  formData.append("precio", document.getElementById("precio").value.trim());
+   try {
+       if (form.dataset.modo === "editar") {
+           const ID_obra = form.dataset.ID_obra;
+           
+           // Si no hay nueva imagen, mantener la actual
+           const imagenInput = form.querySelector('input[type="file"]');
+           if (imagenInput.files.length === 0) {
+               formData.set('imagen', form.dataset.imagenActual);
+           }
 
-  try {
-    const response = await fetch(`${API_URL}/obras/${id ? id : ""}`, {
-      method: id ? "PUT" : "POST",
-      headers: { Authorization: `Bearer ${token}` },
-      body: formData,
-    });
+           await updateObra(ID_obra, formData);
+           alert("Obra actualizada correctamente");
+       } else {
+           await createObra(formData);
+           alert("Obra creada correctamente");
+       }
 
-    if (response.ok) {
-      alert(
-        id ? "Obra actualizada correctamente" : "Obra agregada correctamente"
-      );
-      obraForm.reset();
-      cargarObras();
-    } else {
-      alert("Error al guardar la obra");
-    }
-  } catch (error) {
-    console.error("Error al guardar la obra", error);
-  }
+       // Resetear formulario y recargar obras
+       form.reset();
+       form.dataset.modo = "crear";
+       form.querySelector('button[type="submit"]').textContent = "Agregar";
+       await cargarObras();
+   } catch (error) {
+       console.error("Error en el formulario:", error);
+       alert(error.message);
+   }
 });
 
-logoutButton.addEventListener("click", () => {
-  localStorage.removeItem("token");
-  alert("Sesión cerrada correctamente");
-  window.location.href = "index.html";
+// Función para eliminar una obra
+async function eliminarObra(id) {
+   if (!confirm("¿Estás seguro de que quieres eliminar esta obra?")) return;
+   
+   try {
+       await deleteObra(id);
+       alert("Obra eliminada correctamente");
+       await cargarObras();
+   } catch (error) {
+       console.error("Error al eliminar:", error);
+       alert(error.message);
+   }
+}
+
+// Manejador para cerrar sesión
+document.getElementById("cerrar-sesion").addEventListener("click", () => {
+   localStorage.removeItem("token");
+   window.location.href = "index.html";
 });
