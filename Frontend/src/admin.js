@@ -88,37 +88,52 @@ function cargarFormularioEdicion(id) {
 }
 
 // Manejador del formulario para crear/editar obras
+// Manejador del formulario para crear/editar obras
 document.getElementById("obra-form").addEventListener("submit", async (event) => {
-   event.preventDefault();
-   const form = event.target;
-   const formData = new FormData(form);
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
 
-   try {
-       if (form.dataset.modo === "editar") {
-           const ID_obra = form.dataset.ID_obra;
-           
-           // Si no hay nueva imagen, mantener la actual
-           const imagenInput = form.querySelector('input[type="file"]');
-           if (imagenInput.files.length === 0) {
-               formData.set('imagen', form.dataset.imagenActual);
-           }
+    try {
+        if (form.dataset.modo === "editar") {
+            const ID_obra = form.dataset.ID_obra;
+            
+            // Crear objeto con los datos del formulario
+            const datosActualizacion = {
+                descripcion: formData.get('descripcion'),
+                fecha_creacion: formData.get('fecha_creacion'),
+                precio: Number(formData.get('precio')),
+                ID_disciplina: Number(formData.get('ID_disciplina')),
+                ID_subdisciplina: Number(formData.get('ID_subdisciplina'))
+            };
 
-           await updateObra(ID_obra, formData);
-           alert("Obra actualizada correctamente");
-       } else {
-           await createObra(formData);
-           alert("Obra creada correctamente");
-       }
+            // Manejar la imagen separadamente
+            const imagenInput = form.querySelector('input[type="file"]');
+            if (imagenInput.files.length === 0) {
+                // Si no hay nueva imagen, usar la imagen actual
+                datosActualizacion.imagen = form.dataset.imagenActual;
+            } else {
+                // Si hay nueva imagen, usar la del input
+                datosActualizacion.imagen = formData.get('imagen').name;
+            }
 
-       // Resetear formulario y recargar obras
-       form.reset();
-       form.dataset.modo = "crear";
-       form.querySelector('button[type="submit"]').textContent = "Agregar";
-       await cargarObras();
-   } catch (error) {
-       console.error("Error en el formulario:", error);
-       alert(error.message);
-   }
+            console.log('Datos de actualización:', datosActualizacion);
+            await updateObra(ID_obra, datosActualizacion);
+            alert("Obra actualizada correctamente");
+        } else {
+            await createObra(formData);
+            alert("Obra creada correctamente");
+        }
+
+        // Resetear formulario y recargar obras
+        form.reset();
+        form.dataset.modo = "crear";
+        form.querySelector('button[type="submit"]').textContent = "Agregar";
+        await cargarObras();
+    } catch (error) {
+        console.error("Error en el formulario:", error);
+        alert(error.message);
+    }
 });
 
 // Función para eliminar una obra
