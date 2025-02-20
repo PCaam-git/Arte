@@ -55,40 +55,22 @@ export const createObra = async (formData) => {
 };
 
 // Actualiza una obra existente por su ID
-export const updateObra = async (id, formData) => {
+export const updateObra = async (id, datos) => {
     try {
-        // Verificar contenido del FormData antes de enviar
-        const datosAEnviar = {};
-        for (let [key, value] of formData.entries()) {
-            datosAEnviar[key] = value;
-        }
-        console.log('Datos a actualizar:', datosAEnviar);
-
-        // Realizar la petición PUT
         const response = await fetch(`${API_URL}/obras/${id}`, {
             method: 'PUT',
-            body: formData,
             headers: {
-                // No establecer Content-Type, dejar que el navegador lo maneje con el boundary del FormData
-            }
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(datos)
         });
 
-        // Si la respuesta no es ok, intentar obtener el mensaje de error
         if (!response.ok) {
-            let errorMessage = 'Error al actualizar obra';
-            try {
-                const errorData = await response.json();
-                errorMessage = errorData.error || errorMessage;
-            } catch (e) {
-                console.error('No se pudo parsear la respuesta de error:', e);
-            }
-            throw new Error(errorMessage);
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Error al actualizar obra');
         }
 
-        // Intentar parsear la respuesta exitosa
-        const responseData = await response.json();
-        return responseData;
-
+        return await response.json();
     } catch (error) {
         console.error("Error en updateObra:", error);
         throw error;
