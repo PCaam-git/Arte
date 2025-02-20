@@ -1,67 +1,57 @@
 const db = require("../configuration/database");
 
-/*const findAllObras = async () => {
-  return await db.select('*').from('obras');
-};*/
-
+// Obtener todas las obras de la base de datos
 const findAllObras = async () => {
-  const obras = await db.select("*").from("obras");
-  try {
-    console.log("📌 Intentando conectar a la base de datos...");
-    const obras = await db.select("*").from("obras");
-    console.log("✅ Conexión exitosa, obras encontradas:", obras);
-    return obras;
-  } catch (error) {
-    console.error("❌ Error en la base de datos:", error);
-    throw error;
-  }
-
-  /*console.log("📌 Datos extraídos de la base de datos:", obras);*/ // <-- Agregar esta línea para depuración
-
-  return obras;
+ try {
+   // Realizar consulta a la base de datos
+   const obras = await db.select("*").from("obras");
+   return obras;
+ } catch (error) {
+   console.error("Error al obtener obras:", error);
+   throw error;
+ }
 };
 
+// Encontrar una obra específica por su ID
 const findObra = async (ID_obra) => {
-  return await db("obras").where("ID_obra", ID_obra).first();
+ return await db("obras").where("ID_obra", ID_obra).first();
 };
 
+// Registrar una nueva obra en la base de datos
 const registerObra = async (obra) => {
-  return await db("obras").insert(obra);
+ return await db("obras").insert(obra);
 };
 
+// Modificar una obra existente
 const modifyObra = async (ID_obra, obra) => {
-  try {
-    console.log("modifyObra - Datos recibidos:", {
-      ID_obra,
-      obra,
-    });
+ try {
+   // Actualizar la obra en la base de datos
+   const resultado = await db("obras").where("ID_obra", ID_obra).update(obra);
 
-    const resultado = await db("obras").where("ID_obra", ID_obra).update(obra);
+   // Verificar si se actualizó algún registro
+   if (resultado === 0) {
+     throw new Error(`No se pudo actualizar la obra con ID ${ID_obra}`);
+   }
 
-    console.log("Resultado de update:", resultado);
-
-    if (resultado === 0) {
-      throw new Error(`No se pudo actualizar la obra con ID ${ID_obra}`);
-    }
-
-    // Obtener la obra actualizada
-    const obraActualizada = await db("obras").where("ID_obra", ID_obra).first();
-
-    return obraActualizada;
-  } catch (error) {
-    console.error("Error en modifyObra:", error);
-    throw error;
-  }
+   // Obtener y devolver la obra actualizada
+   const obraActualizada = await db("obras").where("ID_obra", ID_obra).first();
+   return obraActualizada;
+ } catch (error) {
+   console.error("Error al modificar obra:", error);
+   throw error;
+ }
 };
 
+// Eliminar una obra de la base de datos
 const removeObra = async (ID_obra) => {
-  return await db("obras").where("ID_obra", ID_obra).del();
+ return await db("obras").where("ID_obra", ID_obra).del();
 };
 
+// Exportar todas las funciones del servicio
 module.exports = {
-  findAllObras,
-  findObra,
-  registerObra,
-  modifyObra,
-  removeObra,
+ findAllObras,
+ findObra,
+ registerObra,
+ modifyObra,
+ removeObra,
 };
