@@ -51,7 +51,11 @@ DELETE	/api/arte/obras/:id	Eliminar una obra
 
 
 🎨 Capturas de Pantalla
+![Captura página de inicio](https://github.com/user-attachments/assets/b6c8c4ba-3a72-45c1-bd39-aa812f49e25e)
 
+![Captura inicio sesión](https://github.com/user-attachments/assets/cbd64724-7a77-4d7b-a00e-62f4b3fddd1e)
+
+![Captura admin](https://github.com/user-attachments/assets/b22225ff-2475-4afa-98fe-cd959bb8b1f9)
 
 
 
