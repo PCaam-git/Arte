@@ -1,9 +1,14 @@
+<<<<<<< Updated upstream
 import { fetchObras, createObra, updateObra, deleteObra } from "./api.js";
 
+=======
+// Solo manejar el botón de login
+>>>>>>> Stashed changes
 document.getElementById("login-button").addEventListener("click", () => {
   window.location.href = "login.html";
 });
 
+<<<<<<< Updated upstream
 document.addEventListener("DOMContentLoaded", async () => {
   const obrasContainer = document.getElementById("obras-container");
 
@@ -40,3 +45,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       location.reload();
     });
 });
+=======
+// Si necesitas alguna otra funcionalidad de la página principal
+// que no involucre datos de la base de datos
+>>>>>>> Stashed changes
