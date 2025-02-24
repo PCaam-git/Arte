@@ -10,39 +10,43 @@ const token = localStorage.getItem("token");
 
 // Event listener que se ejecuta cuando el DOM está completamente cargado
 document.addEventListener("DOMContentLoaded", async () => {
-   // Verificar si hay un token válido, si no, redirigir al login
-   if (!token) {
-       window.location.href = "login.html";
-       return;
-   }
-   // Cargar obras iniciales
-   await cargarObras();
+
+// Verificar si hay un token válido, si no, redirigir al login
+  if (!token) {
+    window.location.href = "registro.html";
+    return;
+  }
+// Cargar obras iniciales
+  await cargarObras();
 });
 
 // Función asíncrona para obtener las obras del servidor y mostrarlas
 async function cargarObras() {
-   try {
-       obras = await fetchObras();
-       mostrarObras();
-   } catch (error) {
-       console.error("Error al cargar obras:", error);
-       alert(error.message);
-   }
+  try {
+    obras = await fetchObras();
+    mostrarObras();
+  } catch (error) {
+    console.error("Error al cargar obras:", error);
+    alert(error.message);
+  }
 }
 
 // Función para crear y mostrar las tarjetas de obras en el DOM
 function mostrarObras() {
-   const obrasLista = document.getElementById("obras-lista");
+  const obrasLista = document.getElementById("obras-lista");
 
-   // Usar template literals para crear el HTML de cada obra
-   obrasLista.innerHTML = obras.map(obra => `
-       <div class="col-md-4 mb-3">
-           <div class="card">
+  // Usar template literals para crear el HTML de cada obra
+  obrasLista.innerHTML = obras.map(obra => `
+       <div class="col-md-5 mb-5">
+           <div class="card mx-auto" style="max-width: 600px;">
+           <div class="text-center p-3">
                <img src="http://localhost:8090/uploads/${obra.imagen}" 
                     class="card-img-top" 
                     alt="${obra.descripcion}"
+                     style="width: 90%; height: auto;"
                     onerror="this.src='placeholder.jpg'"> <!-- Imagen de respaldo si falla la carga -->
-               <div class="card-body">
+            </div>
+               <div class="card-body px-4">
                    <h5 class="card-title">${obra.descripcion}</h5>
                    <p class="card-text">Precio: ${obra.precio}€</p>
                    <button class="btn btn-danger w-100 btn-eliminar" data-id="${obra.ID_obra}">Eliminar</button>
@@ -52,17 +56,19 @@ function mostrarObras() {
        </div>
    `).join("");
 
-   // Añadir event listeners a los botones después de crear el HTML
-   const botonesEliminar = obrasLista.querySelectorAll(".btn-eliminar");
-   const botonesEditar = obrasLista.querySelectorAll(".btn-editar");
+  // Añadir event listeners a los botones después de crear el HTML
+  const botonesEliminar = obrasLista.querySelectorAll(".btn-eliminar");
+  const botonesEditar = obrasLista.querySelectorAll(".btn-editar");
 
-   // Configurar los handlers para eliminar y editar
-   botonesEliminar.forEach(boton => {
-       boton.addEventListener("click", () => eliminarObra(boton.dataset.id));
-   });
-   botonesEditar.forEach(boton => {
-       boton.addEventListener("click", () => cargarFormularioEdicion(boton.dataset.id));
-   });
+  // Configurar los handlers para eliminar y editar
+  botonesEliminar.forEach((boton) => {
+    boton.addEventListener("click", () => eliminarObra(boton.dataset.id));
+  });
+  botonesEditar.forEach((boton) => {
+    boton.addEventListener("click", () =>
+      cargarFormularioEdicion(boton.dataset.id)
+    );
+  });
 }
 
 // Función para preparar el formulario para editar una obra existente
@@ -135,28 +141,29 @@ document.getElementById("obra-form").addEventListener("submit", async (event) =>
         document.getElementById("form-titulo").textContent = "Agregar Nueva Obra";
         form.querySelector('button[type="submit"]').textContent = "Agregar";
         await cargarObras();
+
     } catch (error) {
-        console.error("Error en el formulario:", error);
-        alert(error.message);
+      console.error("Error en el formulario:", error);
+      alert(error.message);
     }
-});
+  });
 
 // Función para eliminar una obra con confirmación
 async function eliminarObra(id) {
-    if (!confirm("¿Estás seguro de que quieres eliminar esta obra?")) return;
-    
-    try {
-        await deleteObra(id);
-        alert("Obra eliminada correctamente");
-        await cargarObras();
-    } catch (error) {
-        console.error("Error al eliminar:", error);
-        alert(error.message);
-    }
+   if (!confirm("¿Estás seguro de que quieres eliminar esta obra?")) return;
+   
+   try {
+       await deleteObra(id);
+       alert("Obra eliminada correctamente");
+       await cargarObras();
+   } catch (error) {
+       console.error("Error al eliminar:", error);
+       alert(error.message);
+   }
 }
 
 // Manejador para cerrar sesión: elimina el token y redirige
 document.getElementById("cerrar-sesion").addEventListener("click", () => {
-    localStorage.removeItem("token");
-    window.location.href = "index.html";
+   localStorage.removeItem("token");
+   window.location.href = "index.html";
 });

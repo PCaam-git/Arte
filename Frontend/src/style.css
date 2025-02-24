@@ -154,6 +154,11 @@ header {
     height: auto;
 }
 
+.card-img-top {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+}
 
 /* COLUMNA DERECHA */
 
