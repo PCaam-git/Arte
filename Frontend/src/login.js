@@ -26,7 +26,7 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
            // Guardar el token JWT en el almacenamiento local
            localStorage.setItem('token', data.token);
            // Redirigir al panel de administración
-           window.location.href = 'admin.html';
+           window.location.href = 'admin-panel.html';
        } else {
            // Si las credenciales son incorrectas
            document.getElementById('error-message').textContent = 'Usuario o contraseña incorrectos';

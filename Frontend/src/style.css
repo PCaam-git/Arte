@@ -360,7 +360,7 @@ header {
     margin-left: auto;
     padding: 15px 30px;
     border: none;
-    background-color: rgba(179, 132, 46, 0.856);
+    background-color: rgba(224, 207, 59, 0.856);
     color: white;
     border-radius: 6px;
     cursor: pointer;
@@ -369,7 +369,7 @@ header {
 }
 
 .submit_button:hover {
-    background-color: #dfa12f;
+    background-color: #d49827;
     transform: translateY(-2px);
 }
 
@@ -387,15 +387,57 @@ header {
 }
 
 .subasta {
-    flex-direction: column;
-    height: auto;
-    padding: 0 0%;
-    margin: 0 0;
-    }
+    background-color: #f3f3f3;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
 
 .subasta h2 {
-    text-align: center;
+    text-align: left;
+    margin-bottom: 10px;
+    color: #444;
 }
+
+.admin-obras {
+    display: inline-block;
+    padding: 15px 15px;
+    border: none;
+    background-color: rgba(223, 157, 35, 0.856);
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Estilos personalizados para botones */
+.btn-custom-edit {
+    background-color: rgba(152, 86, 97, 0.848);
+    color: white;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border: none;
+  }
+  
+  .btn-custom-edit:hover {
+    background-color: #d42465ba;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .btn-custom-delete {
+    background-color: #241d32af;
+    color: white;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border: none;
+  }
+  
+  .btn-custom-delete:hover {
+    background-color: #8336bad6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
 
 
 /* FOOTER */

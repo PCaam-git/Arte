@@ -1,4 +1,3 @@
-// admin.js
 
 // Importamos las funciones necesarias para interactuar con la API
 import { fetchObras, createObra, updateObra, deleteObra } from "./api.js";
@@ -49,8 +48,8 @@ function mostrarObras() {
                <div class="card-body px-4">
                    <h5 class="card-title">${obra.descripcion}</h5>
                    <p class="card-text">Precio: ${obra.precio}€</p>
-                   <button class="btn btn-danger w-100 btn-eliminar" data-id="${obra.ID_obra}">Eliminar</button>
-                   <button class="btn btn-primary w-100 mt-2 btn-editar" data-id="${obra.ID_obra}">Editar</button>
+                   <button class="btn btn-custom-delete w-100 btn-eliminar" data-id="${obra.ID_obra}">Eliminar</button>
+                   <button class="btn btn-custom-edit w-100 mt-2 btn-editar" data-id="${obra.ID_obra}">Editar</button>
                </div>
            </div>
        </div>

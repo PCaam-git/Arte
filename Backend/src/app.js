@@ -1,3 +1,5 @@
+//app.js
+
 // Importar las dependencias necesarias
 const express = require("express");        // Framework web para Node.js
 const jwt = require("jsonwebtoken");       // Para manejar tokens JWT de autenticación
@@ -26,10 +28,12 @@ const users = [{ usuario: "admin", contraseña: "admin123" }];
 
 // Importar rutas modulares
 const arteRoutes = require("./route/arte");    // Rutas para gestionar obras de arte
+const talleresRoutes = require('./route/talleres'); // Rutas para gestionar talleres
 const authRoutes = require("./route/auth");    // Rutas de autenticación
 
 // Montar las rutas en sus respectivos endpoints
 app.use("/api/arte", arteRoutes);         // Todas las rutas de arte bajo /api/arte
+app.use('/api/arte', talleresRoutes);     // Todas las rutas de talleres bajo /api/arte
 app.use("/api", authRoutes);              // Rutas de autenticación bajo /api
 
 // Ruta específica para el panel de administración

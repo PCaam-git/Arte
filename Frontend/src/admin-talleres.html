@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Administración de Talleres - La vida en lienzo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Playwrite+DE+VA+Guides&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Pinyon+Script&family=Playwrite+DE+VA+Guides&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="contenido-header">
+            <div class="titulo">
+                <img class="logo" src="CSS/Imágenes/Iconos/Logo SF.png" alt="Logotipo">
+                <h1>La vida en lienzo</h1>
+            </div>
+            <div class="iconos-superiores">
+                <a href="#" title="Buscar">
+                    <img src="CSS/Imágenes/Iconos/Lupa.png" alt="Icono de búsqueda" width="50" height="50">
+                </a>
+                <a href="#" title="Usuario" id="login-button">
+                    <img src="CSS/Imágenes/Iconos/Usuario.png" alt="Icono de usuario" width="50" height="50">
+                </a>
+                <a href="#" title="Carrito">
+                    <img src="CSS/Imágenes/Iconos/Cesta compra.png" alt="Icono de carrito" width="50" height="50">
+                </a>
+                <a href="index.html" class="admin-obras" id="cerrar-sesion">Cerrar Sesión</a>
+                <a href="admin.html" class="admin-obras">Obras</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="talleres-container">
+        <h2>Talleres</h2>
+        <div id="talleres-lista" class="row justify-content-center">
+        </div>
+    </section>
+
+    <main class="container mt-5">
+        <h2 id="form-titulo">Agregar Nuevo Taller</h2>
+        <form id="taller-form" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="tematica" class="form-label">Temática</label>
+                <input type="text" class="form-control" id="tematica" name="tematica" placeholder="Temática del taller" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="fecha" class="form-label">Fecha</label>
+                <input type="date" class="form-control" id="fecha" name="fecha" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="lugar" class="form-label">Lugar</label>
+                <input type="text" class="form-control" id="lugar" name="lugar" placeholder="Lugar" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="Descripción del taller"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="imagen" class="form-label">Imagen</label>
+                <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*">
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Agregar</button>
+        </form>
+    </main>
+
+    <script type="module" src="admin-talleres.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
