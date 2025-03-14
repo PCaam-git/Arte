@@ -15,11 +15,11 @@ body {
 header {
   background-color: #f3f3f3;
   border-bottom: 1px solid #ddd;
-  padding: 10px 20px;
+  padding: 5px 10px;
 }
 
 .logo {
-  width: 30%;
+  width: 10%;
   height: auto;
   margin: auto 0;
   display: block;
@@ -153,6 +153,12 @@ header {
   width: 30%;
   height: auto;
   padding: 0 30px;
+}
+
+.card-img-top {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
 }
 
 .descripcion {
@@ -412,6 +418,20 @@ footer {
 
   .menu-disciplinas ul li {
     margin-bottom: 1rem;
+  }
+
+  .columna-izquierda {
+    width: 100%;
+    padding-left: 0;
+  }
+
+  .columna-izquierda img {
+    width: 100%;
+    height: auto;
+  }
+
+  .columna-derecha {
+    width: 100%;
   }
 }
 /*# sourceMappingURL=index.2cdaf7bc.css.map */

@@ -1,3 +1,4 @@
+//register.js
 // URL base para las peticiones de autenticación
 const API_URL = 'http://localhost:8090/api';
 
@@ -44,9 +45,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                // Redirigir según el tipo de usuario
                if (usuario === 'admin' && contraseña === 'admin123') {
-                   window.location.href = 'admin.html'; // Panel de administrador
+                   window.location.href = 'admin-panel.html'; // Panel de administrador
                } else {
-                   window.location.href = 'index.html'; // Vista de usuario normal
+                   window.location.href = 'usuarios-panel.html'; // Vista de usuario normal
                }
            } else {
                alert('Error: ' + data.error);
@@ -79,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
            if (response.ok) {
                alert('Registro exitoso, ahora puedes iniciar sesión');
-               window.location.href = 'index.html'; // Redirigir tras registro exitoso
+               window.location.href = 'usuarios-panel.html'; // Redirigir tras registro exitoso
            } else {
                alert('Error: ' + data.error);
            }
