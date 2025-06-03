@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Build the Backend Docker image
+      working-directory: ./Backend
+      run: docker build . --file Dockerfile --tag arte-backend:$(date +%s)
+    
+    - name: Build the Frontend Docker image  
+      working-directory: ./Frontend
+      run: docker build . --file Dockerfile --tag arte-frontend:$(date +%s)

@@ -1,0 +1,6 @@
+db:
+  client: sqlite3
+  filename: ./src/configuration/arte.db
+
+service:
+  port: 8090

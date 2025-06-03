@@ -1,0 +1,21 @@
+name: arte-test
+services:
+  db-test:
+    image: mariadb:11.3.2
+    container_name: arte-db-test
+    environment:
+      MYSQL_USER: 'testuser'
+      MYSQL_PASSWORD: 'testpass'
+      MYSQL_PORT: 3306
+      MYSQL_ROOT_PASSWORD: 'rootpass'
+      MYSQL_DATABASE: 'arte_test'
+    ports:
+      - "3308:3306"  # Puerto diferente para tests
+    volumes:
+      - ./db-test:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "testuser", "-ptestpass"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s

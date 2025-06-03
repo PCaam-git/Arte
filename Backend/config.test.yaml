@@ -1,0 +1,33 @@
+# Configuración para entorno de testing
+# Archivo: config.test.yaml
+
+server:
+  port: 3001
+
+database:
+  client: mysql2
+  connection:
+    host: localhost
+    port: 3308
+    user: testuser
+    password: testpass
+    database: arte_test
+  migrations:
+    directory: ./migrations
+  seeds:
+    directory: ./seeds
+
+cors:
+  origin: http://localhost:3000
+  credentials: true
+
+uploads:
+  destination: ./uploads
+  maxSize: 5242880
+
+jwt:
+  secret: test_jwt_secret_key
+  expiresIn: 1h
+
+bcrypt:
+  rounds: 4
