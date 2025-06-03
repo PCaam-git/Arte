@@ -5,18 +5,53 @@
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "express-validator": "^7.2.1",
+    "js-yaml": "^4.1.0",
     "jsonwebtoken": "^9.0.2",
     "knex": "^3.1.0",
     "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.14.1",
     "path": "^0.12.7",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "yargs": "^17.7.2"
   },
   "name": "arte-backend",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "start": "node src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start-local": "node src/app.js --config config.local.yaml",
+    "start-dev": "node src/app.js --config config.dev.yaml",
+    
+    "unit-test": "jest src/test/unit",
+    "integration-test": "mocha src/test/integration --exit --timeout 10000",
+    "integration-test-with-env": "node scripts/run-integration-tests.js",
+    "test": "npm run unit-test && npm run integration-test-with-env",
+    
+    "dev-db-up": "docker-compose -f docker-compose.dev.yaml up -d",
+    "dev-db-down": "docker-compose -f docker-compose.dev.yaml down",
+    "dev-db-logs": "docker-compose -f docker-compose.dev.yaml logs",
+    "dev-db-status": "docker-compose -f docker-compose.dev.yaml ps",
+    
+    "test-db-up": "docker-compose -f docker-compose.test.yaml up -d",
+    "test-db-down": "docker-compose -f docker-compose.test.yaml down -v",
+    "test-db-logs": "docker-compose -f docker-compose.test.yaml logs",
+    "test-db-status": "docker-compose -f docker-compose.test.yaml ps",
+    "test-db-check": "node scripts/check-db.js",
+    "test-db-reset": "node scripts/reset-test-db.js",
+    "check-config": "node scripts/check-config.js",
+    "check-yaml": "node scripts/check-yaml.js",
+    
+    "test-with-docker": "npm run test-db-up && echo 'Revisa que la BD esté lista con: npm run test-db-check' && echo 'Luego ejecuta: npm run integration-test'",
+    
+    "clean": "npm run test-db-down && npm run dev-db-down"
+  },
+  "devDependencies": {
+    "babel-eslint": "10.1.0",
+    "chai": "^4.3.7",
+    "chai-http": "^4.4.0",
+    "cross-env": "^7.0.3",
+    "jest": "^29.7.0",
+    "mocha": "^10.4.0"
   },
   "keywords": [],
   "author": "Patricia Caamaño",
